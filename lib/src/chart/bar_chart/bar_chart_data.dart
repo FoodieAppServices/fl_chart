@@ -314,7 +314,7 @@ class BarChartGroupData with EquatableMixin {
 class BarChartRodData with EquatableMixin {
   /// [BarChart] renders rods vertically from zero to [y].
   final double y;
-  final double? minY;
+  final double minY;
 
   /// if you pass just one color, the solid color will be used,
   /// or if you pass more than one color, we use gradient mode to draw.
@@ -375,7 +375,7 @@ class BarChartRodData with EquatableMixin {
   /// ```
   BarChartRodData({
     double y,
-    double? minY,
+    double minY,
     List<Color> colors,
     Offset gradientFrom,
     Offset gradientTo,
