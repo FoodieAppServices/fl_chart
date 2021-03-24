@@ -264,9 +264,15 @@ abstract class AxisChartPainter<D extends AxisChartData> extends BaseChartPainte
           _gridPaint.transparentIfWidthIsZero();
 
           final bothY = getPixelY(horizontalSeek, usableViewSize, holder);
-          final x1 = 0 + getLeftOffsetDrawSize(holder);
+          // This is extremely, extremely sad. I don't know why but it SEGFAULTs
+          // dart VM on prod and I don't have time nor patience to understand why
+          // will have to revisit, but this is so much going to haunt me!
+          print('#!#!#!#!#!#!#!#!#!#!');
+          print('Ugly stuff is happening at axis_chart_painter.dart. If you do not know why the '
+              'grid is misaligned with the left axis, look there. I am sorry.');
+          final x1 = 45.0; // = getLeftOffsetDrawSize(holder);
           final y1 = bothY;
-          final x2 = usableViewSize.width + getLeftOffsetDrawSize(holder);
+          final x2 = x1 + usableViewSize.width;
           final y2 = bothY;
           canvasWrapper.drawDashedLine(
               Offset(x1, y1), Offset(x2, y2), _gridPaint, flLine.dashArray);
